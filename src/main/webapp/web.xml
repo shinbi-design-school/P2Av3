@@ -2,6 +2,7 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
+
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
@@ -42,4 +43,41 @@
   	<servlet-name>AccountSearchServlet</servlet-name>
   	<url-pattern>AccountSearchServlet</url-pattern>
   </servlet-mapping>
+
+
+  <servlet>
+  	<servlet-name>TochigiQuiz_QuizShowServlet</servlet-name>
+  	<display-name>TochigiQuiz_QuizShowServlet</display-name>
+  	<description></description>
+  	<servlet-class>quizSystem.servlet.TochigiQuiz_QuizShowServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TochigiQuiz_QuizShowServlet</servlet-name>
+  	<url-pattern>/TochigiQuiz_QuizShowServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>TochigiQuiz_ResultServlet</servlet-name>
+  	<display-name>TochigiQuiz_ResultServlet</display-name>
+  	<description></description>
+  	<servlet-class>quizSystem.servlet.TochigiQuiz_ResultServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TochigiQuiz_ResultServlet</servlet-name>
+  	<url-pattern>/TochigiQuiz_ResultServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>LoginServlet_momose</servlet-name>
+  	<display-name>LoginServlet_momose</display-name>
+  	<description></description>
+  	<servlet-class>quizSystem.servlet.LoginServlet_momose</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet_momose</servlet-name>
+  	<url-pattern>/LoginServlet_momose</url-pattern>
+  </servlet-mapping>
+
+
+
 </web-app>
