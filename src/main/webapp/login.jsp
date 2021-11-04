@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,7 @@
 	<h1>ログイン画面</h1>
 <!-- 入れるならheader.jspをいれる -->
 		<main>
-			<form method="post" action="http://localhost:8080/P2Av3/LoginServlet_momose">
+			<form action="http://localhost:8080/P2Av3/LoginServlet_momose" method="post">
 				<table id="login">
 					<tr>
 						<th>アカウント名</th>
@@ -23,7 +23,6 @@
 					<tr>
 						<td><input id="submit" type="submit" value="ログイン"></td>
 					</tr>
-
 				</table>
 			</form>
 			<a type="submit" type="submit" href="http://localhost:8080/P2Av3/NewMemberAdd.jsp">新規登録</a>

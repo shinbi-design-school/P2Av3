@@ -24,7 +24,7 @@ import quizSystem.dto.LoginDTO;
 @WebServlet("/LoginServlet_momose")
 public class LoginServlet_momose extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -46,15 +46,15 @@ public class LoginServlet_momose extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		response.setContentType("text/html; charaset=utf-8");
 		request.setCharacterEncoding("UTF-8");
-		
+
 			//dao,dtoインスタンス
 			LoginDAO dao = new LoginDAO();
 			List<LoginDTO> userList = dao.userDAO();
 			LoginDTO dto;
-			
+
 			//sqlからデータを持ってきてリスト化するためのリスト
 			List<List<Object>> userObjectList = new ArrayList<>();
 			List<Integer> idList = new ArrayList<>();
@@ -62,14 +62,14 @@ public class LoginServlet_momose extends HttpServlet {
 			List<String> passwordList = new ArrayList<>();
 			List<Time> answerTimeList = new ArrayList<>();
 			List<Integer> correctNumber = new ArrayList<>();
-			
+
 			//次の画面を出力するためにURLを格納する変数
 			String jsp = null;
-			
+
 			//結果を格納するリスト
 			List<String> result = new ArrayList<>();
-			
-			
+
+
 			//sqlから持ってきたデータをリストへ格納
 			for(int i=0; i<userList.size();i++) {
 				dto = (LoginDTO)userList.get(i);
@@ -78,7 +78,7 @@ public class LoginServlet_momose extends HttpServlet {
 				passwordList.add(dto.getPassword());
 				answerTimeList.add(dto.getAnswerTime());
 				correctNumber.add(dto.getCorrectNumber());
-				
+
 				List<Object> tempList = new ArrayList<>();
 				tempList.add(dto.getId());
 				tempList.add(dto.getAccountname());
@@ -87,11 +87,11 @@ public class LoginServlet_momose extends HttpServlet {
 				tempList.add(dto.getAnswerTime());
 				//同上
 				tempList.add(dto.getCorrectNumber());
-				
+
 				userObjectList.add(tempList);
 System.out.println("tempListが存在するか");
 System.out.println(tempList);
-				
+
 			}
 System.out.println("sqlからとってきたaccountList,passwordListがそろっているか");
 System.out.println(idList);
@@ -124,7 +124,7 @@ System.out.println(userObjectListMap.containsValue("momose"));//false
 System.out.println(userObjectListMap.containsKey(1));//true
 System.out.println(userObjectListMap.get(0));//0がnull？なぜ？
 System.out.println(userObjectListMap.get(1));//結果、ユーザーidがわかればそのユーザーの情報をとれるようにはなった。
-			
+
 			//リスト化したaccountListとpasswordListをmapで紐づけ
 			Map<Integer,String> idAccountMap = new HashMap<Integer,String>();
 			Map<String, String> accountPasswordMap = new HashMap<String, String>();
@@ -166,11 +166,11 @@ System.out.println(accountPasswordMap.containsKey(inputAccount));
 					jsp="http://localhost:8080/shinbi_GraduationWork_QuizSystem/loginSystem/error.jsp";
 					HttpSession session = request.getSession();//
 					session.setAttribute("errorMessage",errorMessage);//
-					
+
 					RequestDispatcher rd = request.getRequestDispatcher("error.jsp");//
 					rd.forward(request,response);
 			}
-			
+
 System.out.println("passStringに値が格納されているか確認");
 System.out.println(passString);
 System.out.println("inputPasswordの値が格納されているか確認");
@@ -189,16 +189,16 @@ int inputPasswordInt = Integer.parseInt(inputPassword);
 					Object userStatus = userObjectListMap.get(id);
 					HttpSession session = request.getSession();//
 					session.setAttribute("userStatus",userStatus);//
-					
+
 					RequestDispatcher rd = request.getRequestDispatcher("UserStatus.jsp");//
 					rd.forward(request,response);
-					
+
 			}else {
 					String errorMessage = "入力されたパスワードが登録されておりません。パスワードが正しいかもう一度お確かめ頂き入力ください。";
 					jsp="http://localhost:8080/shinbi_GraduationWork_QuizSystem/loginSystem/error.jsp";
 					HttpSession session = request.getSession();//
 					session.setAttribute("errorMessage",errorMessage);//
-					
+
 					RequestDispatcher rd = request.getRequestDispatcher("error.jsp");//
 					rd.forward(request,response);
 			}

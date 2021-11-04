@@ -10,7 +10,7 @@ import quizSystem.dto.NewMemberAddDTO;
 
 public class NewMemberAddDAO {
 	//mysqlのDBのURL
-	private static final String url ="jdbc:mysql://localhost:3306/quiz?useSSL=false";
+	private static final String url ="jdbc:mysql://localhost:3307/quiz?useSSL=false";
 	//mysql user ID
 	private static final String user = "momose";
 	//mysql user password
@@ -26,7 +26,7 @@ public class NewMemberAddDAO {
 			//(1)データベース接続
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(url,user,pass);
-			
+
 			//(2)sqlの実行
 			//String SQL = "INSERT INTO テーブル名(列名, 列名, …) VALUES( ?, ?, …) ";
 			String sqlAddUser = "INSERT INTO usertable(accountname,password) VALUES(?,?) ";//Userのfield
@@ -54,12 +54,12 @@ public class NewMemberAddDAO {
 			psUser.close();
 			rsUser.close();
 			connect.close();
-	
+
 		}
 		catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return addUser;
 	}
-	
+
 }
