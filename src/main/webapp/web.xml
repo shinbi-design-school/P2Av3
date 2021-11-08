@@ -67,16 +67,13 @@
   </servlet-mapping>
 
   <servlet>
-  	<servlet-name>LoginServlet_momose</servlet-name>
-  	<display-name>LoginServlet_momose</display-name>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<display-name>LoginServlet</display-name>
   	<description></description>
-  	<servlet-class>quizSystem.servlet.LoginServlet_momose</servlet-class>
+  	<servlet-class>quizSystem.servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>LoginServlet_momose</servlet-name>
-  	<url-pattern>/LoginServlet_momose</url-pattern>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
-
-
-
 </web-app>

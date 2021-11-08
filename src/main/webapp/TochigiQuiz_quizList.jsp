@@ -15,18 +15,24 @@ servletによってrequestの中のsessionの情報にworldListの情報が入�
 List<TochigiQuiz_DataTransferObject> list = (List<TochigiQuiz_DataTransferObject>)session.getAttribute("quizList");//sessionよりサーブレットでsetAttributeしたものを取り出す。
 System.out.println(list);
 Collections.shuffle(list);//listの中身をシャッフルする。
+
+String quizName = (String)session.getAttribute("quizName");
+System.out.println(quizName);
 %>
 
 <html>
 <head>
 <meta charset="utf-8">
-<title>●●クイズ</title>
+<title>クイズ</title>
 </head>
 <body>
-<h3>質問１</h3>
+<h3>
+<%=quizName %>
+</h3>
 
 <form method="post" action="http://localhost:8080/P2Av3/TochigiQuiz_ResultServlet">
     <div class = "selection">
+    <input name="quizName" value=<%=quizName %> type="hidden">
 		<%
 		for(int i=0; i<list.size();i++){//質問文を複数出したいためfor文使用
 		%>
@@ -62,12 +68,15 @@ Collections.shuffle(list);//listの中身をシャッフルする。
         <%
 		}
         %>
-          <input type="reset" value="やり直し">
-  		  <input type="submit" name="method" value="答えを送信する">
+        <%long startTime = System.currentTimeMillis(); %>
     </div>
     <div>
     	 <input type="hidden" name="numberOfTimes" value=<%=list.size() %> >
     	 <input type="hidden" name="List" value=<%=list %>>
+    	 <input type="hidden" name="startTime" value=<%=startTime%>>
+    	 <input type="reset" value="やり直し">
+    	  <!-- <input type="submit" name="method" value="答えを送信する"> -->
+    	 <button type="submit" name="endTime" value="endTime">答えを送信する</button>
     </div>
 </form>
 

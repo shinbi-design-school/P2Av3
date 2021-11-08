@@ -46,7 +46,7 @@ public class TochigiQuiz_ResultServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//文字コードなどの設定
-				response.setContentType("text/html; charaset=");
+				response.setContentType("text/html; charaset=utf-8");
 				request.setCharacterEncoding("UTF-8");
 				
 		//DAO,DTOのインスタンス
@@ -60,9 +60,23 @@ public class TochigiQuiz_ResultServlet extends HttpServlet {
 				Map<String,Integer> map = new HashMap<>();////mapでsqlの問題と値を紐づけするために設定
 				
 		//回答者から送られてきた値を格納するリスト群
+				//回答時間
+				long endTime = System.currentTimeMillis();
+				String startTimeString = request.getParameter("startTime");
+				long startTime = Long.parseLong(startTimeString);
+				long answerTime = (endTime - startTime)/1000;
+//System.out.println("回答時間が取得できているか");
+//System.out.println(answerTime);
+				
+				//何のクイズを行っているか
+				String quizName = request.getParameter("quizName");
+System.out.println("何のクイズを行っているか");
+System.out.println(quizName);
+				
 				//回答者に質問を何問提示したか
 				String numberOfTimesString = request.getParameter("numberOfTimes");//回答者に提示した質問数
 				int numberOfTimes = Integer.parseInt(numberOfTimesString);//数値型に変換
+				
 //System.out.println("コンソール表示１：質問の繰り返し回数");
 //System.out.println(numberOfTimes);
 				
@@ -209,13 +223,16 @@ public class TochigiQuiz_ResultServlet extends HttpServlet {
 				resultList.add(listViewTrueAnswerString.get(i));//リストの(i)番目：質問の正しい答えをadd
 				resultList.add(listCorrct.get(i));//リストの(i)番目：正解・不正解が記述されたものをadd
 		}
-
+		String answerTimeString = Long.toString(answerTime);
+		resultList.add(answerTimeString);//
 //System.out.println("コンソールに表示1０:結果result");
 //System.out.println(resultList);
+//System.out.println(resultList.size());
 
 	//ブラウザに情報を送信する準備
 			HttpSession session = request.getSession();//
 			session.setAttribute("resultList",resultList);//
+			session.setAttribute("quizName", quizName);
 			
 			
 			RequestDispatcher rd = request.getRequestDispatcher("TochigiQuiz_result.jsp");//

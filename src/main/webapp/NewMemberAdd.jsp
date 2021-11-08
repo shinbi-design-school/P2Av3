@@ -11,7 +11,7 @@
 <!-- 入れるならheader.jspをいれる -->
 		<main>
 			<form method="post" action="http://localhost:8080/P2Av3/NewMemberRegisterServlet">
-				<table id="login">
+				<table id="NewMemberAdd">
 					<tr>
 						<th>アカウント名</th>
 						<td><input type="text" name="accountname" maxlength="" /></td>

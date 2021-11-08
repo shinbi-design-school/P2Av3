@@ -44,18 +44,23 @@ public class TochigiQuiz_QuizShowServlet extends HttpServlet {
 	 */
 	//htmlでform ation=postで情報送信された場合、このメソッド実行
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setContentType("text/html; charaset=utf-8");
+		request.setCharacterEncoding("UTF-8");
 	//返信する情報の作成--------
 		//データベースにアクセスするオブジェクトメソッドをインスタンス
 		TochigiQuiz_DataAccessObject quizDAO = new TochigiQuiz_DataAccessObject();
 		//データベースから情報を写す型のオブジェクトのリストを左辺にして、右辺にデータベースの接続クラスのメソッドを指定し、データベースの接続とデータベースから情報を引き出すメソッドを実行
 		List<TochigiQuiz_DataTransferObject> quizList = quizDAO.pullInfromationCountryFromDatabase();
 		
+		//
+		String quizName = request.getParameter("quizName");
+//System.out.println(quizName);
 		//セッションの開始//左辺でセッションオブジェクト、右辺でrequest情報の中にあるsessionの情報をgetするメソッドの実行
 		HttpSession session = request.getSession();
 		//sessionに
 		//.setAttribute(name,value)
 		session.setAttribute("quizList",quizList);
+		session.setAttribute("quizName", quizName);
 	//返信する情報の作成-------
 	
 	//返信する情報を送る

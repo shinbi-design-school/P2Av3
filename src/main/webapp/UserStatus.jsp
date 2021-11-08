@@ -1,24 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>
+<%@ page import="quizSystem.dto.LoginDTO" %>
 
 <%
-	@SuppressWarnings("unchecked")
-	List<Object> status = (List<Object>)session.getAttribute("userStatus");
-	System.out.println(status);
-	System.out.println(status.get(0));
+	String[] user = (String[])session.getAttribute("user");
  %>
 <html>
 <head>
 <title>ユーザーステータス画面</title>
 </head>
 <body>
-<h1><%=status.get(1) %>さんの部屋：</h1>
+<h1><%=user[1]/*status.get(1)*/ %>さんの部屋：</h1>
     <div class = "status">
     
-    			<h3>Id：<%=status.get(0) %></h3>
-		        <h3>アカウント名：<%=status.get(1) %></h3>
-		        <h3>パスワード：<%=status.get(2) %></h3>
+    			<h3>Id：<%=user[0]/*status.get(0)*/%></h3>
+		        <h3>アカウント名：<%=user[1]/*status.get(1)*/ %></h3>
+		        <h3>パスワード：<%=user[2]/*status.get(2)*/ %></h3>
 	
 				<table border="1">
 					<tr>
@@ -30,11 +27,13 @@
 					<tr>
 					<!--  for文で繰り返して出力 -->
 						<th>javaコード</th>
-						<th><%=status.get(3) %></th>
-						<th><%=status.get(4) %></th>
+						<th>javaコード</th>
+						<th>javaコード</th>
 					</tr>
 				</table>
     </div>
-<a  href="SelectQuiz.jsp">クイズの選択へ進む</a>
+<a href="SelectQuiz.jsp">クイズの選択へ進む</a>
+<p></p>
+<a href="InqueryForm.html">不明点の問い合わせフォーム</a>
 </body>
 </html>

@@ -26,6 +26,10 @@ NewMemberAddDTO addUser =(NewMemberAddDTO)session.getAttribute("addUser");
 					<tr>
 						<th>パスワード：<%=addUser.getPassword() %></th>
 					</tr>
+						<tr>
+						<th>ハッシュ化パスワード：<%=addUser.getPasswordBytes() %></th>
+					</tr>
+					
 					<tr>
 						<td><a  href="SelectQuiz.jsp">クイズの選択へ進む</a></td>
 					</tr>

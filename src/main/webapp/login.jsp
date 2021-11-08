@@ -7,14 +7,14 @@
 	<!-- 入れるならhead.jspをいれる -->
 </head>
 <body>
-	<h1>ログイン画面</h1>
+	<h2>＜ログイン画面＞</h2>
 <!-- 入れるならheader.jspをいれる -->
 		<main>
-			<form method="post" action="http://localhost:8080/P2Av3/LoginServlet_momose">
+			<form method="post" action="http://localhost:8080/P2Av3/LoginServlet">
 				<table id="login">
 					<tr>
 						<th>アカウント名</th>
-						<td><input type="text" name="account" maxlength="" /></td>
+						<td><input type="text" name="accountname" maxlength="" /></td>
 					</tr>
 					<tr>
 						<th>パスワード</th>
@@ -26,7 +26,7 @@
 
 				</table>
 			</form>
-			<a type="submit" type="submit" href="http://localhost:8080/P2Av3/NewMemberAdd.jsp">新規登録</a>
+			<a type="submit"  href="NewMemberAdd.jsp">新規登録</a>
 		</main>
 	<!-- 入れるならfooter.jspをいれる -->
 	</body>

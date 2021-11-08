@@ -24,8 +24,6 @@ public class LoginDAO {
 	private List<LoginDTO> answerTimeList = new ArrayList<>();
 	private List<LoginDTO> theNumberOfCorrectAnswerList = new ArrayList<>();
 	
-	Connection connect = null;
-	PreparedStatement psUser = null;
 	PreparedStatement psAnswerTime = null;
 	PreparedStatement psTheNumberOfCorrectAnswer = null;
 	ResultSet resultUser = null;
@@ -40,28 +38,26 @@ public class LoginDAO {
 		//JDBC読み込み
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");//これがないとlistにアイテムが入っていないというエラー：NullPointExceptionがでてしまう、、、、
-			connect = DriverManager.getConnection(url,user,password);
+			Connection connect = DriverManager.getConnection(url,user,password);
 			
 			//データベースからquizテーブルにあるカラムを全選択（SQL文）
 			String user_sql = "SELECT * from usertable ";
-			psUser = connect.prepareStatement(user_sql);
+			PreparedStatement psUser = connect.prepareStatement(user_sql);
 			
 			resultUser = psUser.executeQuery();
 			
 			while(resultUser.next()) {
 				//データベースから取得した値をセットする
-				LoginDTO  worldDataTransferObject = new LoginDTO();
+				LoginDTO loginDTO = new LoginDTO();
 				//DTOのメソッドset××（）よりSQLよりとってきたカラムのフィールドにあるフィールドｔと値をセット
-				worldDataTransferObject.setId(resultUser.getInt("id"));
-				worldDataTransferObject.setAccountname(resultUser.getString("accountname"));
-				worldDataTransferObject.setPassword(resultUser.getString("password"));
+				loginDTO.setId(resultUser.getInt("id"));
+				loginDTO.setAccountname(resultUser.getString("accountname"));
+				loginDTO.setPassword(resultUser.getString("password"));
+				loginDTO.setPasswordBytes(resultUser.getBytes("passwordBytes"));
 				
 				//listにいれてリスト形式で格納
-				userList.add(worldDataTransferObject);
+				userList.add(loginDTO);
 				
-//for(int i=0; i< userList.size(); i++){
-//	System.out.println(userList.get(i));
-//}
 			}
 			resultUser.close();
 			psUser.close();
@@ -76,32 +72,32 @@ public class LoginDAO {
 		//JDBC読み込み
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");//これがないとlistにアイテムが入っていないというエラー：NullPointExceptionがでてしまう、、、、
-			connect = DriverManager.getConnection(url,user,password);
+			Connection connect = DriverManager.getConnection(url,user,password);
 			
 			String answertime_sql = "SELECT * from answertime ";
-			psAnswerTime = connect.prepareStatement(answertime_sql);
+			PreparedStatement psAnswerTime = connect.prepareStatement(answertime_sql);
 			
-			resultAnswerTime = psAnswerTime.executeQuery();
+			ResultSet resultAnswerTime = psAnswerTime.executeQuery();
 			
 			while(resultAnswerTime.next()) {
 				//データベースから取得した値をセットする
-				LoginDTO  worldDataTransferObject = new LoginDTO();
+				LoginDTO  loginDTO = new LoginDTO();
 				//DTOのメソッドset××（）よりSQLよりとってきたカラムのフィールドにあるフィールドｔと値をセット
-				worldDataTransferObject.setId(resultAnswerTime.getInt("id"));
-				worldDataTransferObject.setUserId(resultAnswerTime.getInt("userid"));
+				loginDTO.setId(resultAnswerTime.getInt("id"));
+				loginDTO.setUserId(resultAnswerTime.getInt("userid"));
 				//for(int i=0; answerTime１、２，３、、、のように繰り返し処理で全部のDBのこのテーブルのフィールドをとる
-				worldDataTransferObject.setAnswerTime(resultAnswerTime.getTime("answerTime"));
+				loginDTO.setAnswerTime(resultAnswerTime.getTime("answerTime"));
 				
 				//listにいれてリスト形式で格納
-				answerTimeList.add(worldDataTransferObject);
+				answerTimeList.add(loginDTO);
 /*
 for(int i=0;answerTimeList.size(); i++){
 	System.out.println(answerTimeList.get(i));
 }
 */
 			}
-			resultUser.close();
-			psUser.close();
+			resultAnswerTime.close();
+			psAnswerTime.close();
 		}
 		catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
@@ -113,7 +109,7 @@ for(int i=0;answerTimeList.size(); i++){
 		//JDBC読み込み
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");//これがないとlistにアイテムが入っていないというエラー：NullPointExceptionがでてしまう、、、、
-			connect = DriverManager.getConnection(url,user,password);
+			Connection connect = DriverManager.getConnection(url,user,password);
 			
 			String thenumberofcorrectanswer_sql = "SELECT * from thenumberofcorrectanswer ";
 			psTheNumberOfCorrectAnswer = connect.prepareStatement(thenumberofcorrectanswer_sql);
@@ -122,14 +118,14 @@ for(int i=0;answerTimeList.size(); i++){
 			
 			while(resultTheNumberOfCorrectAnswer.next()) {
 				//データベースから取得した値をセットする
-				LoginDTO  worldDataTransferObject = new LoginDTO();
+				LoginDTO  loginDTO = new LoginDTO();
 				//DTOのメソッドset××（）よりSQLよりとってきたカラムのフィールドにあるフィールドｔと値をセット
-				worldDataTransferObject.setId(resultTheNumberOfCorrectAnswer.getInt("id"));
-				worldDataTransferObject.setUserId(resultTheNumberOfCorrectAnswer.getInt("userid"));
-				worldDataTransferObject.setCorrectNumber(resultTheNumberOfCorrectAnswer.getInt("CorrectNumber"));
+				loginDTO.setId(resultTheNumberOfCorrectAnswer.getInt("id"));
+				loginDTO.setUserId(resultTheNumberOfCorrectAnswer.getInt("userid"));
+				loginDTO.setCorrectNumber(resultTheNumberOfCorrectAnswer.getInt("CorrectNumber"));
 				
 				//listにいれてリスト形式で格納
-				theNumberOfCorrectAnswerList.add(worldDataTransferObject);
+				theNumberOfCorrectAnswerList.add(loginDTO);
 /*
 for(int i=0;theNumberOfCorrectAnswerList.size(); i++){
 	System.out.println(theNumberOfCorrectAnswerList.get(i));
