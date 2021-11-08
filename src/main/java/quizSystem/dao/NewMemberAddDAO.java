@@ -34,6 +34,7 @@ public class NewMemberAddDAO {
 			//(1)データベース接続
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(url,user,pass);
+
 	
 			//passwordハッシュ化
 			MessageDigest digest = null;
@@ -74,12 +75,12 @@ public class NewMemberAddDAO {
 			psUser.close();
 			rsUser.close();
 			connect.close();
-	
+
 		}
 		catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return addUser;
 	}
-	
+
 }

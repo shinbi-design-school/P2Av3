@@ -19,7 +19,7 @@ public class TochigiQuiz_DataAccessObject {
 	private static final String password = "momose";
 	//入れるデータのリスト化する型
 	private List<TochigiQuiz_DataTransferObject> nlist = new ArrayList<>();
-	
+
 	Connection connect = null;
 	PreparedStatement ps = null;
 	ResultSet result = null;
@@ -30,14 +30,14 @@ public class TochigiQuiz_DataAccessObject {
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");//これがないとlistにアイテムが入っていないというエラー：NullPointExceptionがでてしまう、、、、
 			connect = DriverManager.getConnection(url,user,password);
-			
+
 			//データベースからquizテーブルにあるカラムを全選択（SQL文）
 			String sql = "SELECT * from quiz ";
 			ps = connect.prepareStatement(sql);
-			
+
 			//左辺：SQL文の結果を格納するための変数　　　右辺：SQL文の実行
 			result = ps.executeQuery();
-			
+
 			while(result.next()) {
 				//データベースから取得した値をセットする
 				TochigiQuiz_DataTransferObject  worldDataTransferObject = new TochigiQuiz_DataTransferObject();
@@ -49,7 +49,7 @@ public class TochigiQuiz_DataAccessObject {
 				worldDataTransferObject.setSelection2(result.getString("selection2"));
 				worldDataTransferObject.setSelection3(result.getString("selection3"));
 				worldDataTransferObject.setSelection4(result.getString("selection4"));
-				
+
 				//listにいれてリスト形式で格納
 				nlist.add(worldDataTransferObject);
 			}
@@ -61,5 +61,5 @@ public class TochigiQuiz_DataAccessObject {
 		}
 		return nlist;
 	}
-			
+
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+"-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
@@ -38,11 +38,11 @@
   	<servlet-name>LogoutServlet</servlet-name>
   	<url-pattern>LogoutServlet</url-pattern>
   </servlet-mapping>
+
   <servlet-mapping>
   	<servlet-name>AccountSearchServlet</servlet-name>
   	<url-pattern>AccountSearchServlet</url-pattern>
   </servlet-mapping>
-
 
   <servlet>
   	<servlet-name>TochigiQuiz_QuizShowServlet</servlet-name>
@@ -61,6 +61,7 @@
   	<description></description>
   	<servlet-class>quizSystem.servlet.TochigiQuiz_ResultServlet</servlet-class>
   </servlet>
+
   <servlet-mapping>
   	<servlet-name>TochigiQuiz_ResultServlet</servlet-name>
   	<url-pattern>/TochigiQuiz_ResultServlet</url-pattern>

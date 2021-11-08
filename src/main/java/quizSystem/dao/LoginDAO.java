@@ -23,7 +23,8 @@ public class LoginDAO {
 	private List<LoginDTO> userList = new ArrayList<>();
 	private List<LoginDTO> answerTimeList = new ArrayList<>();
 	private List<LoginDTO> theNumberOfCorrectAnswerList = new ArrayList<>();
-	
+
+	PreparedStatement psUser = null;
 	PreparedStatement psAnswerTime = null;
 	PreparedStatement psTheNumberOfCorrectAnswer = null;
 	ResultSet resultUser = null;
@@ -31,21 +32,23 @@ public class LoginDAO {
 	ResultSet resultTheNumberOfCorrectAnswer = null;
 	//データベース
 	//戻りの値の型をList<>にして、データベースから必要な情報を取得し、worldListに格納するメソッド
-	
-	
+
+
 	//DBよりusertable情報を格納したリストを返す。
 	public List<LoginDTO> userDAO(){
 		//JDBC読み込み
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");//これがないとlistにアイテムが入っていないというエラー：NullPointExceptionがでてしまう、、、、
+
 			Connection connect = DriverManager.getConnection(url,user,password);
-			
+
 			//データベースからquizテーブルにあるカラムを全選択（SQL文）
 			String user_sql = "SELECT * from usertable ";
+
 			PreparedStatement psUser = connect.prepareStatement(user_sql);
 			
 			resultUser = psUser.executeQuery();
-			
+
 			while(resultUser.next()) {
 				//データベースから取得した値をセットする
 				LoginDTO loginDTO = new LoginDTO();
@@ -67,14 +70,16 @@ public class LoginDAO {
 		}
 		return userList;
 	}
-	
+
 	public List<LoginDTO> answerTimeDAO(){
 		//JDBC読み込み
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");//これがないとlistにアイテムが入っていないというエラー：NullPointExceptionがでてしまう、、、、
+
 			Connection connect = DriverManager.getConnection(url,user,password);
 			
 			String answertime_sql = "SELECT * from answertime ";
+
 			PreparedStatement psAnswerTime = connect.prepareStatement(answertime_sql);
 			
 			ResultSet resultAnswerTime = psAnswerTime.executeQuery();
@@ -86,6 +91,7 @@ public class LoginDAO {
 				loginDTO.setId(resultAnswerTime.getInt("id"));
 				loginDTO.setUserId(resultAnswerTime.getInt("userid"));
 				//for(int i=0; answerTime１、２，３、、、のように繰り返し処理で全部のDBのこのテーブルのフィールドをとる
+
 				loginDTO.setAnswerTime(resultAnswerTime.getTime("answerTime"));
 				
 				//listにいれてリスト形式で格納
@@ -104,22 +110,24 @@ for(int i=0;answerTimeList.size(); i++){
 		}
 		return answerTimeList;
 	}
-	
+
 	public List<LoginDTO> theNumberOfCorrectAnswer(){
 		//JDBC読み込み
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");//これがないとlistにアイテムが入っていないというエラー：NullPointExceptionがでてしまう、、、、
+
 			Connection connect = DriverManager.getConnection(url,user,password);
 			
 			String thenumberofcorrectanswer_sql = "SELECT * from thenumberofcorrectanswer ";
 			psTheNumberOfCorrectAnswer = connect.prepareStatement(thenumberofcorrectanswer_sql);
 			//左辺：SQL文の結果を格納するための変数　　　右辺：SQL文の実行
 			resultTheNumberOfCorrectAnswer = psTheNumberOfCorrectAnswer.executeQuery();
-			
+
 			while(resultTheNumberOfCorrectAnswer.next()) {
 				//データベースから取得した値をセットする
 				LoginDTO  loginDTO = new LoginDTO();
 				//DTOのメソッドset××（）よりSQLよりとってきたカラムのフィールドにあるフィールドｔと値をセット
+
 				loginDTO.setId(resultTheNumberOfCorrectAnswer.getInt("id"));
 				loginDTO.setUserId(resultTheNumberOfCorrectAnswer.getInt("userid"));
 				loginDTO.setCorrectNumber(resultTheNumberOfCorrectAnswer.getInt("CorrectNumber"));
@@ -140,5 +148,5 @@ for(int i=0;theNumberOfCorrectAnswerList.size(); i++){
 		}
 		return theNumberOfCorrectAnswerList;
 	}
-			
+
 }

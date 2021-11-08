@@ -94,23 +94,23 @@ input {
 	background-color: royalblue;
 }
 
-.P2A {
+.P2Av3 {
 	padding: 10px;
 	margin: 10px;
 	border: 1px solid lightgray;
 	border-radius: 8px;
 }
 
-.P2A_header {
+.P2Av3_header {
 	display: flex;
 	justify-content: space-between;
 }
 
-.P2A_header h5 {
+.P2Av3_header h5 {
 	font-size: 12px;
 }
 
-.P2A img {
+.P2Av3 img {
 	display: block;
 	margin: 20px auto;
 	max-width: 100%;

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,9 @@
 	<h2>＜ログイン画面＞</h2>
 <!-- 入れるならheader.jspをいれる -->
 		<main>
+
 			<form method="post" action="http://localhost:8080/P2Av3/LoginServlet">
+
 				<table id="login">
 					<tr>
 						<th>アカウント名</th>
@@ -23,7 +25,6 @@
 					<tr>
 						<td><input id="submit" type="submit" value="ログイン"></td>
 					</tr>
-
 				</table>
 			</form>
 			<a type="submit"  href="NewMemberAdd.jsp">新規登録</a>
