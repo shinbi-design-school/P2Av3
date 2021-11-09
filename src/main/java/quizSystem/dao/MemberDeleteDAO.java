@@ -23,7 +23,7 @@ public class MemberDeleteDAO {
 
 	//データベース
 	//戻りの値の型をList<>にして、データベースから必要な情報を取得し、worldListに格納するメソッド
-	public List<LoginDTO> deleteUserInfromationToDatabase(int inputId,String inputAccountname, String inputPasswordByteString){
+	public List<LoginDTO> deleteUserInfromationToDatabase(int deleteId,String deleteAccountname, String deletePassword){
 		//JDBC読み込み
 		try{
 			//(1)データベース接続
@@ -32,13 +32,13 @@ public class MemberDeleteDAO {
 			
 			//(2)sqlの実行
 			//String SQL = "INSERT INTO テーブル名(列名, 列名, …) VALUES( ?, ?, …) ";
-			String sqlDeleteUser = "DELETE FROM usertable WHERE usertable.id = ? AND usertable.accountname = ? AND usertable.passwordByteString = ? ";//Userのfield
+			String sqlDeleteUser = "DELETE FROM usertable WHERE usertable.id = ? AND usertable.accountname = ? AND usertable.password = ? ";//Userのfield
 			//PreparedStatementではオブジェクトが生成されるときにSQL文が渡されます。PreparedStatementでは、SQL文はプリコンパイルされ、データベースで高速に処理されます。
 			PreparedStatement psDeleteUser = connect.prepareStatement(sqlDeleteUser);//idはsqlDBでauto incrimentで自動生成されるはずなのでいれず。
 			//上のsql文の?にこのprepareStatement#setXXXでセットする。
-			psDeleteUser.setInt(1,inputId);
-			psDeleteUser.setString(2,inputAccountname);
-			psDeleteUser.setString(3,inputPasswordByteString);
+			psDeleteUser.setInt(1,deleteId);
+			psDeleteUser.setString(2,deleteAccountname);
+			psDeleteUser.setString(3,deletePassword);
 			int temp = psDeleteUser.executeUpdate();
 
 			//int count = psAddUser.executeUpdate();
@@ -52,14 +52,14 @@ public class MemberDeleteDAO {
 			//(3)実行結果の確認
 			while(resultUser.next()) {
 				//データベースから取得した値をセットする
-				LoginDTO  dto = new LoginDTO();
+				LoginDTO  worldDataTransferObject = new LoginDTO();
 				//DTOのメソッドset××（）よりSQLよりとってきたカラムのフィールドにあるフィールドｔと値をセット
-				dto.setId(resultUser.getInt("id"));
-				dto.setAccountname(resultUser.getString("accountname"));
-				dto.setPasswordByteString(resultUser.getString("passwordByteString"));
+				worldDataTransferObject.setId(resultUser.getInt("id"));
+				worldDataTransferObject.setAccountname(resultUser.getString("accountname"));
+				worldDataTransferObject.setPassword(resultUser.getString("password"));
 				
 				//listにいれてリスト形式で格納
-				userList.add(dto);
+				userList.add(worldDataTransferObject);
 			}
 			//(4)終了
 			resultUser.close();

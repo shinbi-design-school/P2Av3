@@ -23,7 +23,7 @@ List<String> memberList= (List<String>)session.getAttribute("memberList");
 					<tr>
 						<th>Id</th>
 						<th>アカウント名</th>
-						<th>ハッシュ化パスワード</th>
+						<th>パスワード</th>
 					</tr>
 					<tr>
 						<td><%=memberList.get(3*i+0)%></td>

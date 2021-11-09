@@ -24,10 +24,10 @@ NewMemberAddDTO addUser =(NewMemberAddDTO)session.getAttribute("addUser");
 						<th>アカウント名：<%=addUser.getAccountname()%></th>
 					</tr>
 					<tr>
-						<th>パスワード：非表示</th>
+						<th>パスワード：<%=addUser.getPassword() %></th>
 					</tr>
 						<tr>
-						<th>ハッシュ化パスワード：<%=addUser.getPasswordByteString() %></th>
+						<th>ハッシュ化パスワード：<%=addUser.getPasswordBytes() %></th>
 					</tr>
 					
 					<tr>

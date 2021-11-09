@@ -57,7 +57,7 @@ public class MembersServlet extends HttpServlet {
 		List<List<Object>> userObjectList = new ArrayList<>();
 		List<Integer> idList = new ArrayList<>();
 		List<String> accountList = new ArrayList<>();
-		List<String> passwordByteStringList = new ArrayList<>();
+		List<String> passwordList = new ArrayList<>();
 		List<Time> answerTimeList = new ArrayList<>();
 		List<Integer> correctNumber = new ArrayList<>();
 		
@@ -73,14 +73,14 @@ public class MembersServlet extends HttpServlet {
 			dto = (LoginDTO)userList.get(i);
 			idList.add(dto.getId());
 			accountList.add(dto.getAccountname());
-			passwordByteStringList.add(dto.getPasswordByteString());
+			passwordList.add(dto.getPassword());
 			answerTimeList.add(dto.getAnswerTime());
 			correctNumber.add(dto.getCorrectNumber());
 			
 			List<Object> tempList = new ArrayList<>();
 			tempList.add(dto.getId());
 			tempList.add(dto.getAccountname());
-			tempList.add(dto.getPasswordByteString());
+			tempList.add(dto.getPassword());
 			//ソートするメソッド入れないとだめでは、、、、
 			tempList.add(dto.getAnswerTime());
 			//同上
@@ -94,7 +94,7 @@ System.out.println(tempList);
 System.out.println("sqlからとってきたaccountList,passwordListがそろっているか");
 System.out.println(idList);
 System.out.println(accountList);
-System.out.println(passwordByteStringList);
+System.out.println(passwordList);
 System.out.println(answerTimeList);
 System.out.println(correctNumber);
 
@@ -104,7 +104,7 @@ System.out.println(correctNumber);
 			String tempId = Integer.toString(idList.get(i));
 			memberList.add(tempId);
 			memberList.add(accountList.get(i));
-			memberList.add(passwordByteStringList.get(i));
+			memberList.add(passwordList.get(i));
 		}
 		HttpSession session = request.getSession();//
 		session.setAttribute("memberList",memberList);//

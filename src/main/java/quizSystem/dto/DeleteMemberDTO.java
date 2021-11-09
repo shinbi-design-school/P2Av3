@@ -4,7 +4,7 @@ public class DeleteMemberDTO {
 	int id;
 	String accountname;
 	String password;
-	String passwordByteString;
+	byte[] passwordBytes;
 	
 
 	public DeleteMemberDTO() {
@@ -36,16 +36,14 @@ public class DeleteMemberDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getPasswordByteString() {
-		return passwordByteString;
+	
+	public byte[] getPasswordBytes() {
+		return passwordBytes;
 	}
 
-	public void setPasswordByteString(String passwordByteString) {
-		this.passwordByteString = passwordByteString;
+	public void setPasswordBytes(byte[] passwordBytes) {
+		this.passwordBytes = passwordBytes;
 	}
-	
-	
 
 	
 
