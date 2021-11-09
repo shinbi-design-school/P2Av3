@@ -1,6 +1,8 @@
 package quizSystem.servlet;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,14 +52,32 @@ public class DeleteMemberServlet<MemberDeleteDTO> extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		//
-		String deleteIdString = request.getParameter("deleteId");
-		int deleteId = Integer.parseInt(deleteIdString);
-		String deleteAccountname = request.getParameter("deleteAccountname");
-		String deletePassword = request.getParameter("deletePassword");
+		String inputIdString = request.getParameter("deleteId");
+		int inputId = Integer.parseInt(inputIdString);
+		String inputAccountname = request.getParameter("deleteAccountname");
+		String inputPassword = request.getParameter("deletePassword");
+		
+		//入力されたpasswordをハッシュ化
+		byte[] inputPasswordByte = null ;
+		StringBuilder inputPasswordByteSB = null;
+		String inputPasswordByteString = null;
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			digest.update(inputPassword.getBytes());
+			inputPasswordByte = digest.digest();
+			inputPasswordByteSB = new StringBuilder(2*inputPasswordByte.length);
+			for(byte b : inputPasswordByte){
+				inputPasswordByteSB.append(String.format("%02x",b&0xff));
+			}
+			inputPasswordByteString = new String(inputPasswordByteSB);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 System.out.println("ブラウザからパラメーターが取得できているか");
-System.out.println(deleteId);
-System.out.println(deleteAccountname);
-System.out.println(deletePassword);
+System.out.println(inputId);
+System.out.println(inputAccountname);
+System.out.println(inputPasswordByteString);
 		
 		//DAO,DTOのインスタンス
 		//入力された既存のアカウントやパスワードがあるか確認（LoginServletより抜粋）
@@ -68,13 +88,13 @@ System.out.println(deletePassword);
 		//sqlからデータを持ってきてリスト化するためのリスト
 		List<Integer> idList = new ArrayList<>();
 		List<String> accountList = new ArrayList<>();
-		List<String> passwordList = new ArrayList<>();
+		List<String> passwordByteStringList = new ArrayList<>();
 		List<Time> answerTimeList = new ArrayList<>();
 		List<Integer> correctNumber = new ArrayList<>();
 		//メンバー削除後のリスト
 		List<Integer> idListDeleteAfter = new ArrayList<>();
 		List<String> accountListDeleteAfter = new ArrayList<>();
-		List<String> passwordListDeleteAfter = new ArrayList<>();
+		List<String> passwordByteStringListDeleteAfter = new ArrayList<>();
 		List<Time> answerTimeListDeleteAfter = new ArrayList<>();
 		List<Integer> correctNumberDeleteAfter = new ArrayList<>();
 		
@@ -83,30 +103,30 @@ System.out.println(deletePassword);
 			dto = (LoginDTO)userList.get(i);
 			idList.add(dto.getId());
 			accountList.add(dto.getAccountname());
-			passwordList.add(dto.getPassword());
+			passwordByteStringList.add(dto.getPasswordByteString());
 			answerTimeList.add(dto.getAnswerTime());
 			correctNumber.add(dto.getCorrectNumber());
 			
 		}
-		//System.out.println("sqlからとってきたaccountList,passwordListがそろっているか");
-		//System.out.println(idList);
-		//System.out.println(accountList);
-		//System.out.println(passwordList);
-		//System.out.println(answerTimeList);
-		//System.out.println(correctNumber);
+		System.out.println("sqlからとってきたaccountList,passwordListがそろっているか");
+		System.out.println(idList);
+		System.out.println(accountList);
+		System.out.println(passwordByteStringList);
+		System.out.println(answerTimeList);
+		System.out.println(correctNumber);
 		
 		//同じアカウント名やパスワードがないか確認
-		if(accountList.contains(deleteAccountname) && passwordList.contains(deletePassword)) {
+		if(accountList.contains(inputAccountname) && passwordByteStringList.contains(inputPasswordByteString)) {
 			//入力されたアカウント名とパスワードが同じであれば（
 			MemberDeleteDAO deleteDAO = new MemberDeleteDAO();
-			List<LoginDTO> userListDeleteAfter = deleteDAO.deleteUserInfromationToDatabase(deleteId,deleteAccountname,deletePassword);
+			List<LoginDTO> userListDeleteAfter = deleteDAO.deleteUserInfromationToDatabase(inputId,inputAccountname,inputPasswordByteString);
 			
 			//sqlから持ってきたデータをリストへ格納
 			for(int i=0; i<userListDeleteAfter.size();i++) {
 				dto = (LoginDTO)userListDeleteAfter.get(i);
 				idListDeleteAfter.add(dto.getId());
 				accountListDeleteAfter.add(dto.getAccountname());
-				passwordListDeleteAfter.add(dto.getPassword());
+				passwordByteStringListDeleteAfter.add(dto.getPasswordByteString());
 				answerTimeListDeleteAfter.add(dto.getAnswerTime());
 				correctNumberDeleteAfter.add(dto.getCorrectNumber());
 			}
@@ -116,7 +136,7 @@ System.out.println(deletePassword);
 				String tempId = Integer.toString(idListDeleteAfter.get(i));
 				memberList.add(tempId);
 				memberList.add(accountListDeleteAfter.get(i));
-				memberList.add(passwordListDeleteAfter.get(i));
+				memberList.add(passwordByteStringListDeleteAfter.get(i));
 				
 			}
 			
@@ -140,3 +160,4 @@ System.out.println(deletePassword);
 	}
 
 }
+

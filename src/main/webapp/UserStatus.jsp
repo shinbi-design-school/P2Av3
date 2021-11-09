@@ -15,7 +15,7 @@
     
     			<h3>Id：<%=user[0]/*status.get(0)*/%></h3>
 		        <h3>アカウント名：<%=user[1]/*status.get(1)*/ %></h3>
-		        <h3>パスワード：<%=user[2]/*status.get(2)*/ %></h3>
+		        <h3>ハッシュ化パスワード：<%=user[2]/*status.get(2)*/ %></h3>
 	
 				<table border="1">
 					<tr>

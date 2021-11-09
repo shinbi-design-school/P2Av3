@@ -4,7 +4,7 @@ public class MemberDTO {
 	private int id;
 	private String accountname;
 	private String password;
-	private byte[] passwordBytes;
+	private String passwordByteString;
 	
 	public int getId() {
 		return id;
@@ -24,14 +24,16 @@ public class MemberDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public byte[] getPasswordBytes() {
-		return passwordBytes;
+	public String getPasswordByteString() {
+		return passwordByteString;
 	}
-	public void setPasswordBytes(byte[] passwordBytes) {
-		this.passwordBytes = passwordBytes;
+	public void setPasswordByteString(String passwordByteString) {
+		this.passwordByteString = passwordByteString;
 	}
+	
 	
 	
 	
 
 }
+

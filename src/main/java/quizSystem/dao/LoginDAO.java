@@ -55,8 +55,7 @@ public class LoginDAO {
 				//DTOのメソッドset××（）よりSQLよりとってきたカラムのフィールドにあるフィールドｔと値をセット
 				loginDTO.setId(resultUser.getInt("id"));
 				loginDTO.setAccountname(resultUser.getString("accountname"));
-				loginDTO.setPassword(resultUser.getString("password"));
-				loginDTO.setPasswordBytes(resultUser.getBytes("passwordBytes"));
+				loginDTO.setPasswordByteString(resultUser.getString("passwordByteString"));
 				
 				//listにいれてリスト形式で格納
 				userList.add(loginDTO);

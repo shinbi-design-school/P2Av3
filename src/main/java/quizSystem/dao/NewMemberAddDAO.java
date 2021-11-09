@@ -1,7 +1,5 @@
 package quizSystem.dao;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,35 +25,22 @@ public class NewMemberAddDAO {
 
 	//データベース
 	//戻りの値の型をList<>にして、データベースから必要な情報を取得し、worldListに格納するメソッド
-	public NewMemberAddDTO addUserInfromationToDatabase(String accountname, String password){
+	public NewMemberAddDTO addUserInfromationToDatabase(String inputAccountname, String inputPasswordByteString){
 		//JDBC読み込み
 		try{
 			//登録するときに同じアカウント名、パスワードがないか確認
 			//(1)データベース接続
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(url,user,pass);
-
-	
-			//passwordハッシュ化
-			MessageDigest digest = null;
-			try {
-				digest = MessageDigest.getInstance("SHA-256");
-			} catch (NoSuchAlgorithmException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
-			byte[] passwordBytes = digest.digest(password.getBytes());
-			
 			
 			//(2)sqlの実行
 			//String SQL = "INSERT INTO テーブル名(列名, 列名, …) VALUES( ?, ?, …) ";
-			String sqlAddUser = "INSERT INTO usertable(accountname,passwordBytes) VALUES(?,?) ";//Userのfield
+			String sqlAddUser = "INSERT INTO usertable(accountname,passwordByteString) VALUES(?,?) ";//Userのfield
 			//PreparedStatementではオブジェクトが生成されるときにSQL文が渡されます。PreparedStatementでは、SQL文はプリコンパイルされ、データベースで高速に処理されます。
 			PreparedStatement psAddUser = connect.prepareStatement(sqlAddUser);//idはsqlDBでauto incrimentで自動生成されるはずなのでいれず。
 			//上のsql文の?にこのprepareStatement#setXXXでセットする。
-			psAddUser.setString(1,accountname);
-			//psAddUser.setString(2,password);
-			psAddUser.setBytes(2, passwordBytes);
+			psAddUser.setString(1,inputAccountname);
+			psAddUser.setString(2,inputPasswordByteString);
 			int temp = psAddUser.executeUpdate();
 			//PreparedStatementでは、SQLのselect文を実行するとき、executeQueryメソッドを使います。検索結果として、ResultSetが返されます。
 			String sqlUser = "SELECT * FROM usertable ORDER BY id DESC LIMIT 1";
@@ -66,8 +51,7 @@ public class NewMemberAddDAO {
 			while(rsUser.next()) {
 				addUser.setId(rsUser.getInt("id"));
 				addUser.setAccountname(rsUser.getString("accountname"));
-				addUser.setPassword(rsUser.getString("password"));
-				addUser.setPasswordBytes(rsUser.getBytes("passwordBytes"));
+				addUser.setPasswordByteString(rsUser.getString("passwordByteString"));
 			}
 			//(4)終了
 			//また、insert, update, deleteのような、データベースの更新を行う処理には、executeUpdateメソッドを使います。更新された行数が返されます。

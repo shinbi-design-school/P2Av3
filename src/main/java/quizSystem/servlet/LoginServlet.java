@@ -1,6 +1,8 @@
 package quizSystem.servlet;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,8 +57,8 @@ public class LoginServlet extends HttpServlet {
 			//sqlからデータを持ってきてリスト化するためのリスト
 			List<Integer> idList = new ArrayList<>();
 			List<String> accountList = new ArrayList<>();
-			List<String> passwordList = new ArrayList<>();
-			List<byte[]> passwordBytes = new ArrayList<>();
+			//List<String> passwordList = new ArrayList<>();
+			List<String> passwordByteStringList = new ArrayList<>();
 			List<Time> answerTimeList = new ArrayList<>();
 			List<Integer> correctNumber = new ArrayList<>();
 
@@ -68,24 +70,36 @@ public class LoginServlet extends HttpServlet {
 				LoginDTO dto = (LoginDTO)userList.get(i);//userList.get(i):テーブルのi番目という意味
 				idList.add(dto.getId());//i=0のきテーブルの１番目のgetId()
 				accountList.add(dto.getAccountname());
-				passwordList.add(dto.getPassword());
-				passwordBytes.add(dto.getPasswordBytes());
+				passwordByteStringList.add(dto.getPasswordByteString());
 				answerTimeList.add(dto.getAnswerTime());
 				correctNumber.add(dto.getCorrectNumber());
 			}
-System.out.println("sqlからとってきたaccountList,passwordListがそろっているか");
-System.out.println(idList);
-System.out.println(accountList);
-System.out.println(passwordList);
-System.out.println(answerTimeList);
-System.out.println(correctNumber);
 
 			//ブラウザから入力情報を取得
 			String inputAccount = request.getParameter("accountname");
 			String inputPassword = request.getParameter("password");
-System.out.println("入力されたアカウント、パスワードがブラウザからとれているか");
-System.out.println(inputAccount);
+			
+			//入力されたpasswordをハッシュ化
+			byte[] inputPasswordByte = null ;
+			StringBuilder inputPasswordByteSB = null;
+			String inputPasswordByteString = null;
+			try {
+				MessageDigest digest = MessageDigest.getInstance("SHA-256");
+				digest.update(inputPassword.getBytes());
+				inputPasswordByte = digest.digest();
+				inputPasswordByteSB = new StringBuilder(2*inputPasswordByte.length);
+				for(byte b : inputPasswordByte){
+					inputPasswordByteSB.append(String.format("%02x",b&0xff));
+				}
+				inputPasswordByteString = new String(inputPasswordByteSB);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+			
+System.out.println("ハッシュ化したパスワードの確認");
 System.out.println(inputPassword);
+System.out.println(inputPasswordByteString);
 
 
 				Map<String,Integer> accountIdMap = new HashMap<>();
@@ -94,25 +108,25 @@ System.out.println(inputPassword);
 				}
 				Map<String,String> accountPasswordMap = new HashMap<>();
 				for(int i=0;i<idList.size();i++) {
-					accountPasswordMap.put(accountList.get(i), passwordList.get(i));
+					accountPasswordMap.put(accountList.get(i), passwordByteStringList.get(i));
 				}
 System.out.println("accountIdMap,accountPasswordMapの情報があるか確認");
 System.out.println(accountIdMap);
 System.out.println(accountPasswordMap);
 
 				if(accountList.contains(inputAccount)) {
-					String loginPassword =accountPasswordMap.get(inputAccount);
+					String passwordByteString =accountPasswordMap.get(inputAccount);
 System.out.println("パスワード比較");
-System.out.println(loginPassword);
-System.out.println(inputAccount);
-					if(loginPassword.equals(inputPassword)) {
+System.out.println(inputPasswordByteString);
+System.out.println(passwordByteString);
+					if(passwordByteString.equals(inputPasswordByteString)) {
 						//String jsp="UserStatus.jsp";
 						int loginId = accountIdMap.get(inputAccount);
 						var loginIdString = Integer.toString(loginId);
 						String[] user = new String[3];
 						user[0] = loginIdString;
 						user[1] = inputAccount;
-						user[2] = inputPassword;
+						user[2] = inputPasswordByteString;
 						//member.setId(loginId);
 						//member.setAccountname(inputAccount);
 						//member.setPassword(inputPassword);
