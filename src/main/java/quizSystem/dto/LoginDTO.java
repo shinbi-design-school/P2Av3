@@ -9,7 +9,7 @@ public class LoginDTO implements Serializable{
 	private int id;//
 	private String accountname;
 	private String password;
-	private byte[] passwordBytes;
+	private String passwordByteString;
 	
 	private int userId;
 	private Time answerTime;
@@ -60,11 +60,11 @@ public class LoginDTO implements Serializable{
 	public void setCorrectNumber(int correctNumber) {
 		this.correctNumber = correctNumber;
 	}
-	public byte[] getPasswordBytes() {
-		return passwordBytes;
+	public String getPasswordByteString() {
+		return passwordByteString;
 	}
-	public void setPasswordBytes(byte[] passwordBytes) {
-		this.passwordBytes = passwordBytes;
+	public void setPasswordByteString(String passwordByteString) {
+		this.passwordByteString = passwordByteString;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

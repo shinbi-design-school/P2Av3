@@ -40,7 +40,7 @@ public class MembersDAO {
 				while(rsMember.next()) {
 					member.setId(rsMember.getInt("id"));
 					member.setAccountname(rsMember.getString("accountname"));
-					member.setPassword(rsMember.getString("password"));
+					member.setPasswordByteString(rsMember.getString("passwordByteString"));
 					
 					allMembersList.add(member);
 				}
