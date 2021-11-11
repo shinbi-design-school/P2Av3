@@ -35,5 +35,16 @@
 <a href="SelectQuiz.jsp">クイズの選択へ進む</a>
 <p></p>
 <a href="InqueryForm.html">不明点の問い合わせフォーム</a>
+<p><p>
+<form id="userStatus" method="post" action="PasswordChangeServlet">
+<h5>パスワードを変更する<h5>
+<input type="password" name="passwordChange" maxlength="10"/>
+<input type="hidden" value=<%=user[0] %> name="id">
+<input type="hidden" value=<%=user[1] %> name="accountname">
+<input type="hidden" value=<%=user[2] %> name="passwordBytesString">
+<p></p>
+<input id="submit" type="submit" value="パスワードを変更する。">
+</form>
+
 </body>
 </html>

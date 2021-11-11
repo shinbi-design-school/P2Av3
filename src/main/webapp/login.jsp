@@ -11,7 +11,7 @@
 <!-- 入れるならheader.jspをいれる -->
 		<main>
 
-			<form method="post" action="http://localhost:8080/P2Av3/LoginServlet">
+			<form method="post" action="LoginServlet">
 
 				<table id="login">
 					<tr>
@@ -19,8 +19,8 @@
 						<td><input type="text" name="accountname" maxlength="" /></td>
 					</tr>
 					<tr>
-						<th>パスワード</th>
-						<td><input type="password" name="password" maxlength=""/></td>
+						<th>パスワード(10文字までしか入力できません)</th>
+						<td><input type="password" name="password" maxlength="10"/></td>
 					</tr>
 					<tr>
 						<td><input id="submit" type="submit" value="ログイン"></td>

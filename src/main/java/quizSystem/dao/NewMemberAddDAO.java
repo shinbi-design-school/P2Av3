@@ -49,9 +49,9 @@ public class NewMemberAddDAO {
 
 			//(3)sqlの実行結果の処理
 			while(rsUser.next()) {
-				addUser.setId(rsUser.getInt("id"));
-				addUser.setAccountname(rsUser.getString("accountname"));
-				addUser.setPasswordByteString(rsUser.getString("passwordByteString"));
+				int id =rsUser.getInt("id");
+				String accountname = rsUser.getString("accountname");
+				String passwordByteString = rsUser.getString("passwordByteString");
 			}
 			//(4)終了
 			//また、insert, update, deleteのような、データベースの更新を行う処理には、executeUpdateメソッドを使います。更新された行数が返されます。
