@@ -14,11 +14,13 @@ List<String> memberList= (List<String>)session.getAttribute("memberList");
 </head>
 <body>
 <body>
-	<h1>全ユーザーリスト</h1>
+	<header>
+		<h1>全ユーザーリスト</h1>
+	</header>
 	<h3>メンバーを削除したので全ユーザーリストに削除したメンバーが入っていないか、
 	「ctrl + F　で　id,accountname,passwordが含まれていないか確認してください。」</h3>
-<!-- 入れるならheader.jspをいれる -->
-		<main>
+
+	<main>
 			<form method="post" action="●●">
 				<table border="1" id="deleteMemberAfterUsers">
 					<% for(int i=0; i<memberList.size()/3;i++) { %>
@@ -39,5 +41,8 @@ List<String> memberList= (List<String>)session.getAttribute("memberList");
 					</tr>
 				</table>
 			</form>
-		</main>
+	</main>
+	<footer>
+		<jsp:include page="footer.jsp"/>
+	</footer>
 </html>

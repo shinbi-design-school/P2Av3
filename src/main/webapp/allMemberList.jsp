@@ -38,4 +38,7 @@ List<String> memberList= (List<String>)session.getAttribute("memberList");
 				</table>
 			</form>
 		</main>
+		<footer>
+			<jsp:include page="footer.jsp"/>
+		</footer>
 </html>

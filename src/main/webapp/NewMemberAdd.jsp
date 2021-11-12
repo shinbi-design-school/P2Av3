@@ -7,9 +7,10 @@
 	<!-- 入れるならhead.jspをいれる -->
 </head>
 <body>
-	<h1>新規ユーザー登録</h1>
-<!-- 入れるならheader.jspをいれる -->
-		<main>
+	<header>
+		<h1>新規ユーザー登録</h1>
+	</header>
+	<main>
 			<form method="post" action="http://localhost:8080/P2Av3/NewMemberRegisterServlet">
 				<table id="NewMemberAdd">
 					<tr>
@@ -28,5 +29,8 @@
 					</tr>
 				</table>
 			</form>
-		</main>
+	</main>
+	<footer>
+		<jsp:include page="footer.jsp"/>
+	</footer>
 </html>

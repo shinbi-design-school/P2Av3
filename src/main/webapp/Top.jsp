@@ -2,15 +2,20 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>トップ画面</h1>
-	
-	<jsp:include page="login.jsp"/>
-	
-	<h2><a href="SelectQuiz.jsp">＜ログインせずにクイズへ進む＞</a></h2>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<link rel = "stylesheet" type="text/css" href="css/Top.css">
+		<title>トップ画面</title>
+	</head>
+	<body>
+		<header>
+			<h1>トップ画面</h1>
+		</header>
+		<main>
+			<h3><a href="SelectQuiz.jsp">＜ログインせずにクイズへ進む＞</a></h3>
+			<jsp:include page="login.jsp"/>
+		</main>
+		<footer>
+		</footer>
+	</body>
 </html>

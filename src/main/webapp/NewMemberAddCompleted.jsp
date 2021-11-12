@@ -13,9 +13,10 @@ NewMemberAddDTO addUser =(NewMemberAddDTO)session.getAttribute("addUser");
 	<!-- 入れるならhead.jspをいれる -->
 </head>
 <body>
-<!-- 入れるならheader.jspをいれる -->
-	<h2>登録完了しました。</h2>
-		<main>
+	<header>
+		<h2>登録完了しました。</h2>
+	</header>
+	<main>
 				<table id="新規ユーザー登録完了">
 					<tr>
 						<th>Id：<%=addUser.getId()%></th>
@@ -34,7 +35,9 @@ NewMemberAddDTO addUser =(NewMemberAddDTO)session.getAttribute("addUser");
 						<td><a  href="SelectQuiz.jsp">クイズの選択へ進む</a></td>
 					</tr>
 				</table>
-		</main>
-	<!-- 入れるならfooter.jspをいれる -->
+	</main>
+	<footer>
+		<jsp:include page="footer.jsp"/>
+	</footer>
 	</body>
 </html>

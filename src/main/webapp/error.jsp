@@ -6,7 +6,9 @@
 		<title>エラー</title>
 	</head>
 	<body>
-		<h1>エラー画面</h1>
+		<header>
+			<h1>エラー画面</h1>
+		</header>
 		<main>
 			<%
 			 String errorMessage = (String)session.getAttribute("errorMessage");
@@ -15,5 +17,8 @@
 				<%=errorMessage %>
 			</div>
 		</main>
+		<footer>
+			<jsp:include page="footer.jsp"/>
+		</footer>
 	</body>
 </html>

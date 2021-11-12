@@ -4,12 +4,15 @@
 <html>
 <head>
 	<title>ログイン画面</title>
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<!-- 入れるならhead.jspをいれる -->
 </head>
 <body>
-	<h2>＜ログイン画面＞</h2>
+	<header>
+		<h2>＜ログイン画面＞</h2>
+	</header>
 <!-- 入れるならheader.jspをいれる -->
-		<main>
+	<main>
 
 			<form method="post" action="LoginServlet">
 
@@ -19,8 +22,9 @@
 						<td><input type="text" name="accountname" maxlength="" /></td>
 					</tr>
 					<tr>
-						<th>パスワード(10文字までしか入力できません)</th>
+						<th>パスワード</th>
 						<td><input type="password" name="password" maxlength="10"/></td>
+				
 					</tr>
 					<tr>
 						<td><input id="submit" type="submit" value="ログイン"></td>
@@ -28,7 +32,9 @@
 				</table>
 			</form>
 			<a type="submit"  href="NewMemberAdd.jsp">新規登録</a>
-		</main>
-	<!-- 入れるならfooter.jspをいれる -->
+	</main>
+	<footer>
+		<jsp:include page="footer.jsp"/>
+	</footer>
 	</body>
 </html>

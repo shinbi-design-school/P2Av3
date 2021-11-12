@@ -7,9 +7,10 @@
 <title>memberDelete</title>
 </head>
 <body>
-	<h1>メンバー削除画面</h1>
-<!-- 入れるならheader.jspをいれる -->
-		<main>
+	<header>
+			<h1>メンバー削除画面</h1>
+	</header>
+	<main>
 			<form method="post" action="DeleteMemberServlet">
 				<table id="memberDelete">
 					<tr>
@@ -32,7 +33,9 @@
 				</table>
 			</form>
 			<a type="submit" type="submit" href="AdministratorScreen.jsp">管理者の画面に戻る</a>
-		</main>
-	<!-- 入れるならfooter.jspをいれる -->
+	</main>
+	<footer>
+		<jsp:include page="footer.jsp"/>
+	</footer>
 	</body>
 </html>
