@@ -14,9 +14,9 @@ public class MembersDAO {
 	//mysqlのDBのURL
 		private static final String url ="jdbc:mysql://localhost:3306/quiz?useSSL=false";
 		//mysql user ID
-		private static final String user = "momose";
+		private static final String user = "root";
 		//mysql user password
-		private static final String password = "momose";
+		private static final String password = "";
 		//入れるデータのリスト化する型
 		public  List<MemberDTO> allMembersList = new ArrayList<MemberDTO>();
 		public MemberDTO member = new MemberDTO();

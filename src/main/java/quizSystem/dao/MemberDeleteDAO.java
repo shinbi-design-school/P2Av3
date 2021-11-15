@@ -14,9 +14,9 @@ public class MemberDeleteDAO {
 	//mysqlのDBのURL
 	private static final String url ="jdbc:mysql://localhost:3306/quiz?useSSL=false";
 	//mysql user ID
-	private static final String user = "momose";
+	private static final String user = "root";
 	//mysql user password
-	private static final String pass = "momose";
+	private static final String pass = "";
 	//
 	private List<LoginDTO> userList = new ArrayList<>();
 	
