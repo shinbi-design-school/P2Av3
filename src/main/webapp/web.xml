@@ -88,4 +88,15 @@
   	<servlet-name>PasswordChangeServlet</servlet-name>
   	<url-pattern>/PasswordChangeServlet</url-pattern>
   </servlet-mapping>
+
+ <servlet>
+  	<servlet-name>RegistrationOfResultsServlet</servlet-name>
+  	<display-name>RegistrationOfResultsServlet</display-name>
+  	<description></description>
+  	<servlet-class>quizSystem.servlet.RegistrationOfResultsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RegistrationOfResultsServlet</servlet-name>
+  	<url-pattern>/RegistrationOfResultsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

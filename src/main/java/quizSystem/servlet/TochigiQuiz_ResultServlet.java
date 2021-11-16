@@ -49,22 +49,22 @@ public class TochigiQuiz_ResultServlet extends HttpServlet {
 				response.setContentType("text/html; charaset=utf-8");
 				request.setCharacterEncoding("UTF-8");
 				
-		//DAO,DTOのインスタンス
-				TochigiQuiz_DataAccessObject quizDAO = new TochigiQuiz_DataAccessObject();//DBアクセスのオブジェクトをインスタンス
-				List<TochigiQuiz_DataTransferObject> quizList = quizDAO.pullInfromationCountryFromDatabase();//DAOのメソッド実行してDBテーブルの１行目、２行目、、、ｎ行目とリスト取得
-				TochigiQuiz_DataTransferObject listDTO;// = (DataTransferObject)quizList.get(i);ここを下記に移動//i=1で指定すればリストの１行目を取ってくるというコードになる。
-				
 		//DBからの値を格納するリスト群
 				List<String> listquestion = new ArrayList<>();//sqlのquestion文を全部格納したいので設定
 				List<Integer> listTrueAnswer = new ArrayList<>();//sqlのanswerのリストとして設定
 				Map<String,Integer> map = new HashMap<>();////mapでsqlの問題と値を紐づけするために設定
 				
 		//回答者から送られてきた値を格納するリスト群
+				//回答者の情報
+				String accountName = (String)request.getParameter("accountName");
+				String id = (String)request.getParameter("id");
+				
 				//回答時間
 				long endTime = System.currentTimeMillis();
 				String startTimeString = request.getParameter("startTime");
 				long startTime = Long.parseLong(startTimeString);
 				long answerTime = (endTime - startTime)/1000;
+				
 //System.out.println("回答時間が取得できているか");
 //System.out.println(answerTime);
 				
@@ -72,6 +72,12 @@ public class TochigiQuiz_ResultServlet extends HttpServlet {
 				String quizName = request.getParameter("quizName");
 System.out.println("何のクイズを行っているか");
 System.out.println(quizName);
+				
+				//DAO,DTOのインスタンス
+				TochigiQuiz_DataAccessObject quizDAO = new TochigiQuiz_DataAccessObject();//DBアクセスのオブジェクトをインスタンス
+				List<TochigiQuiz_DataTransferObject> quizList = quizDAO.pullInfromationCountryFromDatabase(quizName);//DAOのメソッド実行してDBテーブルの１行目、２行目、、、ｎ行目とリスト取得
+				TochigiQuiz_DataTransferObject listDTO;// = (DataTransferObject)quizList.get(i);ここを下記に移動//i=1で指定すればリストの１行目を取ってくるというコードになる。
+
 				
 				//回答者に質問を何問提示したか
 				String numberOfTimesString = request.getParameter("numberOfTimes");//回答者に提示した質問数
@@ -233,6 +239,8 @@ System.out.println(quizName);
 			HttpSession session = request.getSession();//
 			session.setAttribute("resultList",resultList);//
 			session.setAttribute("quizName", quizName);
+			session.setAttribute("accountName", accountName);
+			session.setAttribute("id",id);
 			
 			
 			RequestDispatcher rd = request.getRequestDispatcher("TochigiQuiz_result.jsp");//

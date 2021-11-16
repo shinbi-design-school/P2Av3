@@ -5,6 +5,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.sql.Timestamp" %>
 
 <html>
 <head>
@@ -68,7 +69,7 @@
             box-shadow: none;
         }
 
-        form {
+        .screen {
             margin: 0 auto;
             width: 70%;
             height: auto;
@@ -133,6 +134,7 @@
             height: 105px;
         }
         
+        /*
         .btn {
         	display: block;
         	float: left;
@@ -163,14 +165,22 @@
             background: #33CCFF;
             color: #fff;
         }
-        
+        */
 
 	
 	</style>
 </head>
 <body>
-	<form  method="post" action="">
-	<%String quizName = (String)session.getAttribute("quizName"); %>
+	<div class="screen">
+	<%
+	String quizName = (String)session.getAttribute("quizName");
+	String accountName = (String)session.getAttribute("accountName");
+	String id = (String)session.getAttribute("id");	
+	
+    long millis = System.currentTimeMillis();
+    Timestamp timestamp = new Timestamp(millis);
+	
+	%>
 	<header>
 		<h3 id="title"><%=quizName %></h3>
 
@@ -223,16 +233,24 @@
 	 </main>
 	 <footer>
 	 	<p class="line2"></p>
-	 	<div class="resultAll">
+	 	<form class="resultAll" method="post" action="RegistrationOfResultsServlet">
+	 		<input type="hidden" name="accoutName" value=<%=accountName %>>
+	 		<input type="hidden" name="id" value=<%=id %>>
+	 		<input type="hidden" name="timestamp" value=<%=timestamp.toString()%>>
+	 		<input type="hidden" name="quizName" value=<%=quizName %>>
+	 	
 	    	<h5>正解数＝<%=correctCount%>/<%=((list.size()-1)/8) %></h5>
 	    		<input type="hidden" name="correctCount" value="<%=correctCount%>/<%=((list.size()-1)/8) %>">
 	    	<h5>回答時間（秒）＝<%=list.get(list.size()-1) %>（秒）</h5>
 	    		<input type="hidden" name="answerTime" value="<%=list.get(list.size()-1) %>">
 	    	<div class="btn">
-	    		<button class="button" type="submit" value="">userStatusに戻る</button>
+	    		<button class="button" type="submit" value="結果の登録">登録ユーザー：結果を登録する</button>
 	    	</div>
-	   </div>
+	    	<a href="UserStatus.jsp">登録ユーザー：結果を登録せずにユーザー画面へ戻る</a>
+	   </form>
+	   		<a href="Top.jsp">未登録ユーザー：トップ画面へ戻る</a>
+	   
 	 </footer>
-	</form>
+	</div>
 </body>
 </html>

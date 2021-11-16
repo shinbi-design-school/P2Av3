@@ -17,6 +17,8 @@ System.out.println(list);
 Collections.shuffle(list);//listの中身をシャッフルする。
 
 String quizName = (String)session.getAttribute("quizName");
+String accountName = (String)session.getAttribute("accountName");
+String id = (String)session.getAttribute("id");
 %>
 
 <html>
@@ -225,6 +227,10 @@ String quizName = (String)session.getAttribute("quizName");
 	    	 <input type="hidden" name="numberOfTimes" value=<%=list.size() %> >
 	    	 <input type="hidden" name="List" value=<%=list %>>
 	    	 <input type="hidden" name="startTime" value=<%=startTime%>>
+	    	 <input type="hidden" name="accountName" value=<%=accountName %>>
+	    	 <input type="hidden" name="id" value=<%=id %>>
+	    	 <input type="hidden" name="quizName" value=<%=quizName %>> 
+	    	 
 	    	 
 	    	 <button id="reset" type="reset"  name="reset" value="やり直し">やり直し</button>
 	    	 <button type="submit" name="endTime" value="endTime">答えを送信する</button>

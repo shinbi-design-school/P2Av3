@@ -148,7 +148,7 @@ System.out.println(inputPassword);
 							session.setAttribute("user",user);//
 							
 							RequestDispatcher rd = request.getRequestDispatcher(jsp);//
-							rd.forward(request,response);
+							rd.forward(request, response);
 						}
 						
 					}

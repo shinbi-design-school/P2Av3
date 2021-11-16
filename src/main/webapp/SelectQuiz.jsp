@@ -126,21 +126,45 @@
             body onMouseDown = "return false;"
         onSelectStart = "return false" >
     </script>
+    <%
+    	String id = (String)session.getAttribute("id");
+    	String accountName = (String)session.getAttribute("accountName");
+    	if(accountName != null && id != null){
+    		accountName = (String)session.getAttribute("accountName");
+    		id = (String)session.getAttribute("id");
+    	}
+    	else{
+    		accountName = "ゲスト";
+    		id = null;
+    	}
+    	
+    	
+    
+    %>
 	<header>
+		<h3><%=accountName %>さんようこそ！</h3>
 		<h3>何のクイズを行うか以下から選択してね。</h3>
 	</header>
 	<main>
 		<form method="post" action="TochigiQuiz_QuizShowServlet"  class="box1" >
 			<button type="submit" name="quizName" value="栃木クイズ" class="button" >栃木クイズ　</button>
+			<input type="hidden" name="accountName" value=<%=accountName%>>
+			<input type="hidden" name="id" value=<%=id %>>
 		</form>
-		<form method="post" action="ZatugakuQuiz2"  class="box2">
-			<button type="submit" name="quizName" value="雑学クイズ２" class="button" >雑学クイズ２</button>       
+		<form method="post" action="TochigiQuiz_QuizShowServlet"  class="box2">
+			<button type="submit" name="quizName" value="雑学クイズ２" class="button" >雑学クイズ２</button>
+			<input type="hidden" name="accountName" value=<%=accountName%>>
+			<input type="hidden" name="id" value=<%=id %>>       
 		</form>
 		<form method="post" action="TochigiQuiz_QuizShowServlet" class="box3" >
-			 <button type="submit" name="quizName" value="雑学クイズ３" class="button" >雑学クイズ３</button>
+			<button type="submit" name="quizName" value="雑学クイズ３" class="button" >雑学クイズ３</button>
+			<input type="hidden" name="accountName" value="<%=accountName%>">
+			<input type="hidden" name="id" value=<%=id %>>
 		</form>
 		<form method="post" action="TochigiQuiz_QuizShowServlet" class="box4" >
-			 <button type="submit" name="quizName" value="●●クイズ" class="button" >雑学クイズ４</button>
+			 <button type="submit" name="quizName" value="未実装クイズ" class="button" >未実装クイズ４</button>
+			 <input type="hidden" name="accountName" value=<%=accountName%>>
+			 <input type="hidden" name="id" value=<%=id %>>
 		</form>
 	</main>
 	<footer>
