@@ -4,8 +4,19 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel = "stylesheet" type="text/css" href="css/Top.css">
 		<title>トップ画面</title>
+		<style>
+			h1 {
+				margin-bottom: -10px;
+			}
+			h3 {
+				text-align: center;
+			}
+			
+			header {
+				margin-top: -50px;
+			}
+		</style>
 	</head>
 	<body>
 		<header>

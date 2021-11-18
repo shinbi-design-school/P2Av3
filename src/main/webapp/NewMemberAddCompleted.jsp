@@ -4,7 +4,7 @@
     
 <%
 NewMemberAddDTO addUser =(NewMemberAddDTO)session.getAttribute("addUser");
-
+String inputPassword = (String)session.getAttribute("inputPassword");
 %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@ NewMemberAddDTO addUser =(NewMemberAddDTO)session.getAttribute("addUser");
 						<th>アカウント名：<%=addUser.getAccountname()%></th>
 					</tr>
 					<tr>
-						<th>パスワード：非表示</th>
+						<th>パスワード：<%=inputPassword %></th>
 					</tr>
 						<tr>
 						<th>ハッシュ化パスワード：<%=addUser.getPasswordByteString() %></th>

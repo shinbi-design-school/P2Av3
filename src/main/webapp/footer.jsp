@@ -8,7 +8,7 @@
 </head>
 <body>
 <footer>
-	Copyright &copy; cc.shinbi.quizSystem Allrights reserved.
+	Copyright &copy; cc.shinbi.P2Av3 Allrights reserved.
 </footer>
 </body>
 </html>

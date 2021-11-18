@@ -21,13 +21,7 @@ List<String> memberList= (List<String>)session.getAttribute("memberList");
 
         body {
             background-color: orange;
-            user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            -moz-user-select: none;
-            -khtml-user-select: none;
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
+
         }
 
         #title {

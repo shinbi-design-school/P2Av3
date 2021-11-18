@@ -51,7 +51,9 @@ public class PasswordChangeServlet extends HttpServlet {
 		int id = Integer.parseInt(ids);
 System.out.println("変更対象のid番号は？");
 System.out.println(id);
-		String accountname = request.getParameter("accountname");
+		String accountname = request.getParameter("accountName");
+System.out.println("accountnameの情報が取得できているか確認");
+System.out.println(accountname);
 		String passwordByteString = request.getParameter("passwordByteString");
 		String inputPasswordChange = request.getParameter("passwordChange");
 System.out.println("変更するパスワード");

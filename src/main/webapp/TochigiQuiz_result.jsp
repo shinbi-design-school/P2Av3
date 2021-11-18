@@ -40,9 +40,9 @@
 
         .button {
             box-sizing: content-box;
-            width: 90%;
+            width: 100%;
             height: 36px;
-            margin: 10px 20px 30px 40px;
+            margin: 10px 20px 30px 0px;
             padding-top: 10px;
             padding-bottom: 10px;
             padding-left: 3%;
@@ -51,7 +51,7 @@
             position: relative;
             background-color: #1abc9c;
             border-radius: 10px;
-            color: white;
+            color: red;
             line-height: 120px;
             -webkit-transition: none;
             transition: none;
@@ -60,7 +60,7 @@
         }
 
         .button:hover {
-            background-color: #31c8aa;
+            background-color: yellow;
             box-shadow: 0 3px 0 #23a188;
         }
 
@@ -147,7 +147,7 @@
         	position: absolute;
         	margin-top:25px;
         }
-        
+       /*
         .button {
         	position: absolute;
             display: block;
@@ -172,7 +172,7 @@
             background: #33CCFF;
             color: #fff;
         }
-        
+       */
         .ptag {
         	display: flex;
         	margin-bottom: 100px;

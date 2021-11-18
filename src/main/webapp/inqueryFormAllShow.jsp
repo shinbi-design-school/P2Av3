@@ -77,6 +77,7 @@ List<InqueryFormDTO> list = dao.inqueryAll();
 		</table>
 		</form>
 
+<a href="AdministratorScreen.jsp">管理者画面に戻る</a>
 
 </body>
 </html>

@@ -78,6 +78,11 @@
 								<a type="submit"  href="NewMemberAdd.jsp">新規登録</a>
 							</td>
 						</tr>
+						<tr>
+							<td>
+								<a type="submit" href="Top.jsp">Topへ戻る</a>
+							</td>
+						</tr>
 					</table>
 				</div>
 			</form>

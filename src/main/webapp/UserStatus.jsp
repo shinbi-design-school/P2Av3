@@ -25,7 +25,18 @@ System.out.println(answerTimeList);
  %>
 <html>
 <head>
-<title>ユーザーステータス画面</title>
+	<title>ユーザーステータス画面</title>
+	<style>
+		h5 {
+			margin-bottom: 0px;
+		}
+		h6 {
+			margin-top: 0px;
+    		margin-bottom: 0px;
+		}
+		
+	
+	</style>
 </head>
 <body>
 <h1><%=user[1]/*status.get(1)*/ %>さんの部屋：</h1>
@@ -78,6 +89,7 @@ System.out.println(answerTimeList);
 
 <form id="userStatus" method="post" action="PasswordChangeServlet">
 	<h5>パスワードを変更する</h5>
+	<h6>※下記の入力欄に変更したいパスワードを入力して「パスワードを変更する。」のボタンを押してください。</h6>
 	<input type="password" name="passwordChange" maxlength="10"/>
 	<input type="hidden" value=<%=user[0] %> name="id">
 	<input type="hidden" value=<%=user[1] %> name="accountName">
@@ -87,11 +99,11 @@ System.out.println(answerTimeList);
 </form>
 
 <p></p>
-	<a href="InqueryForm.jsp">不明点の問い合わせフォーム</a>
+	<a href="InqueryForm.jsp"><input type="submit" value="不明点の問い合わせフォーム"></a>
 <p></p>
-<form method ="post" action="ReplyUserShowServlet">
-	<label for="reply">問い合わせの返答を確認する。</label>
-	<input id="reply" type="submit" value=<%=user[0] %> name ="userid">
+<form method ="post" action="ReplyUserShowServlet" >
+	<input id = "reply"type="hidden" value=<%=user[0] %> name = "userid">
+	<input type="submit" value="問い合わせの返答を確認する。" name="送信">
 </form>
 
 </body>

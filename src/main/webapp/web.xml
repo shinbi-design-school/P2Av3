@@ -5,21 +5,12 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
  
-  <servlet-mapping>
-  	<servlet-name>AccountSearchServlet</servlet-name>
-  	<url-pattern>AccountSearchServlet</url-pattern>
-  </servlet-mapping>
-
   <servlet>
   	<servlet-name>TochigiQuiz_QuizShowServlet</servlet-name>
   	<display-name>TochigiQuiz_QuizShowServlet</display-name>
   	<description></description>
   	<servlet-class>quizSystem.servlet.TochigiQuiz_QuizShowServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-  	<servlet-name>TochigiQuiz_QuizShowServlet</servlet-name>
-  	<url-pattern>/TochigiQuiz_QuizShowServlet</url-pattern>
-  </servlet-mapping>
 
   <servlet>
   	<servlet-name>TochigiQuiz_ResultServlet</servlet-name>
@@ -28,21 +19,12 @@
   	<servlet-class>quizSystem.servlet.TochigiQuiz_ResultServlet</servlet-class>
   </servlet>
 
-  <servlet-mapping>
-  	<servlet-name>TochigiQuiz_ResultServlet</servlet-name>
-  	<url-pattern>/TochigiQuiz_ResultServlet</url-pattern>
-  </servlet-mapping>
-
   <servlet>
   	<servlet-name>LoginServlet</servlet-name>
   	<display-name>LoginServlet</display-name>
   	<description></description>
   	<servlet-class>quizSystem.servlet.LoginServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<url-pattern>/LoginServlet</url-pattern>
-  </servlet-mapping>
 
  <servlet>
   	<servlet-name>PasswordChangeServlet</servlet-name>
@@ -50,10 +32,6 @@
   	<description></description>
   	<servlet-class>quizSystem.servlet.PasswordChangeServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-  	<servlet-name>PasswordChangeServlet</servlet-name>
-  	<url-pattern>/PasswordChangeServlet</url-pattern>
-  </servlet-mapping>
 
  <servlet>
   	<servlet-name>RegistrationOfResultsServlet</servlet-name>
@@ -61,10 +39,6 @@
   	<description></description>
   	<servlet-class>quizSystem.servlet.RegistrationOfResultsServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-  	<servlet-name>RegistrationOfResultsServlet</servlet-name>
-  	<url-pattern>/RegistrationOfResultsServlet</url-pattern>
-  </servlet-mapping>
   
    <servlet>
   	<servlet-name>InqueryFromServlet</servlet-name>
@@ -72,17 +46,43 @@
   	<description></description>
   	<servlet-class>quizSystem.servlet.InqueryFromServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-  	<servlet-name>InqueryFromServlet</servlet-name>
-  	<url-pattern>/InqueryFromServlet</url-pattern>
-  </servlet-mapping>
-
-	   <servlet>
+	<servlet>
   	<servlet-name>ReplyUserShowServlet</servlet-name>
   	<display-name>ReplyUserShowServlet</display-name>
   	<description></description>
   	<servlet-class>quizSystem.servlet.ReplyUserShowServlet</servlet-class>
   </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>TochigiQuiz_QuizShowServlet</servlet-name>
+  	<url-pattern>/TochigiQuiz_QuizShowServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>TochigiQuiz_ResultServlet</servlet-name>
+  	<url-pattern>/TochigiQuiz_ResultServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>PasswordChangeServlet</servlet-name>
+  	<url-pattern>/PasswordChangeServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>RegistrationOfResultsServlet</servlet-name>
+  	<url-pattern>/RegistrationOfResultsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>InqueryFromServlet</servlet-name>
+  	<url-pattern>/InqueryFromServlet</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
   	<servlet-name>ReplyUserShowServlet</servlet-name>
   	<url-pattern>/ReplyUserShowServlet</url-pattern>

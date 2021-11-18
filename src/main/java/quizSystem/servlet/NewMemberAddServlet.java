@@ -163,6 +163,7 @@ System.out.println(addUser.getPasswordByteString());
 
 			HttpSession session = request.getSession();//
 			session.setAttribute("addUser",addUser);//
+			session.setAttribute("inputPassword",inputPassword);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("NewMemberAddCompleted.jsp");//
 			rd.forward(request,response);

@@ -40,7 +40,7 @@ public class TochigiQuiz_DataAccessObject {
 					sql = "SELECT * from quiz2 ";
 				}else if(quizName.equals("雑学クイズ３")) {
 					sql = "SELECT * from quiz3 ";
-				}else if(quizName.equals("●●")){
+				}else if(quizName.equals("world's_Trivia_Quiz_[ENG]")){
 					sql = "SELECT * from quiz4 ";
 				}else {}
 			}

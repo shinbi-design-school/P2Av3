@@ -162,7 +162,7 @@
 			<input type="hidden" name="id" value=<%=id %>>
 		</form>
 		<form method="post" action="TochigiQuiz_QuizShowServlet" class="box4" >
-			 <button type="submit" name="quizName" value="未実装クイズ" class="button" >未実装クイズ４</button>
+			 <button type="submit" name="quizName" value="world's_Trivia_Quiz_[ENG]" class="button" >world's Trivia Quiz [ENG]</button>
 			 <input type="hidden" name="accountName" value=<%=accountName%>>
 			 <input type="hidden" name="id" value=<%=id %>>
 		</form>
