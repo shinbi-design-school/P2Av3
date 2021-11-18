@@ -7,6 +7,11 @@
 <%
 	String[] user = (String[])session.getAttribute("user");
 	int userid = Integer.parseInt(user[0]);
+	
+System.out.println("user[]の情報が格納されているか確認");
+System.out.println(user[0]);
+System.out.println(user[1]);
+System.out.println(user[2]);
 	//DAO
 	RegistrationOfResultsDAO add = new RegistrationOfResultsDAO();
 	
@@ -71,9 +76,6 @@ System.out.println(answerTimeList);
 
 <p></p>
 
-<p></p>
-	<a href="InqueryForm.html">不明点の問い合わせフォーム</a>
-<p></p>
 <form id="userStatus" method="post" action="PasswordChangeServlet">
 	<h5>パスワードを変更する</h5>
 	<input type="password" name="passwordChange" maxlength="10"/>
@@ -82,6 +84,14 @@ System.out.println(answerTimeList);
 	<input type="hidden" value=<%=user[2] %> name="passwordBytesString">
 	<p></p>
 	<input id="submit" type="submit" value="パスワードを変更する。">
+</form>
+
+<p></p>
+	<a href="InqueryForm.jsp">不明点の問い合わせフォーム</a>
+<p></p>
+<form method ="post" action="ReplyUserShowServlet">
+	<label for="reply">問い合わせの返答を確認する。</label>
+	<input id="reply" type="submit" value=<%=user[0] %> name ="userid">
 </form>
 
 </body>

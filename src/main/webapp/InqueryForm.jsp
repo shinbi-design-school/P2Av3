@@ -8,7 +8,9 @@
 </head>
 <body>
 <h1>問い合わせ入力</h1>
-<form method="post" action="●●Servlet">
+<h4>※下記で入力して頂くメールアドレス宛に返答させて頂きます。
+	メールアドレスは間違いないよう入力をお願いいたします。</h4>
+<form method="post" action="InqueryFormServlet">
      <table>
         <tr>
           <th><label for="name_form">アカウント名</label></th>
@@ -17,10 +19,6 @@
         <tr>
           <th><label for="mail_form">メールアドレス</label></th>
           <td><input id="email" name="email" type="email" required></td>
-        <tr>
-          <th><label for="pass_form">パスワード</label></th>
-          <td><input id="password" name="password" type="password" required></td>
-        </tr>
         <tr>
          <th>
           <label for="remarks_text">問い合わせ内容</label>

@@ -130,16 +130,22 @@
         	margin: auto; 
             border: solid red;
             text-align: center;
-            width: 200px;
-            height: 105px;
+            width: 215px;
+            height: 100px;
         }
         
-        /*
+        
         .btn {
         	display: block;
         	float: left;
             text-align: right;
             margin: 0,0,auto,0;
+        }
+        
+        #btn-label {
+        	display: block;
+        	position: absolute;
+        	margin-top:25px;
         }
         
         .button {
@@ -150,22 +156,29 @@
             padding: 10px;
             text-align: center;
             text-decoration: none;
-            color: #33CCFF;
+            color: black;
+            background:	#33CCFF;
             border: 2px solid #33CCFF;
             border-radius: 30px;
             transition: ;
         }
 
         .button:hover {
-            background: #33CCFF;
-            color: #fff;
+            background: yellow;
+            color: red;
         }
 
         .button:checked {
             background: #33CCFF;
             color: #fff;
         }
-        */
+        
+        .ptag {
+        	display: flex;
+        	margin-bottom: 100px;
+        	
+        
+        }
 
 	
 	</style>
@@ -186,6 +199,7 @@
 
 	</header>
 	<main>
+		
 	    <div class = "result">
 			<%
 			 @SuppressWarnings("unchecked")
@@ -238,17 +252,21 @@
 	 		<input type="hidden" name="id" value=<%=id %>>
 	 		<input type="hidden" name="timestamp" value=<%=timestamp.toString()%>>
 	 		<input type="hidden" name="quizName" value=<%=quizName %>>
-	 	
-	    	<h5>正解数＝<%=correctCount%>/<%=((list.size()-1)/8) %></h5>
-	    		<input type="hidden" name="correctCount" value="<%=correctCount%>/<%=((list.size()-1)/8) %>">
-	    	<h5>回答時間（秒）＝<%=list.get(list.size()-1) %>（秒）</h5>
-	    		<input type="hidden" name="answerTime" value="<%=list.get(list.size()-1) %>">
-	    	<div class="btn">
-	    		<button class="button" type="submit" value="結果の登録">登録ユーザー：結果を登録する</button>
+	 		<div class="resultCorrectTime">
+		    	<h5>正解数＝<%=correctCount%>/<%=((list.size()-1)/8) %></h5>
+		    		<input type="hidden" name="correctCount" value="<%=correctCount%>/<%=((list.size()-1)/8) %>">
+		    	<h5>回答時間（秒）＝<%=list.get(list.size()-1) %>（秒）</h5>
+		    		<input type="hidden" name="answerTime" value="<%=list.get(list.size()-1) %>">
 	    	</div>
-	    	<a href="UserStatus.jsp">登録ユーザー：結果を登録せずにユーザー画面へ戻る</a>
+	    	<div class="btn">
+	    		<button class="button" type="submit" value="結果の登録">１，登録ユーザー：結果を登録する</button>
+	    	</div>
 	   </form>
-	   		<a href="Top.jsp">未登録ユーザー：トップ画面へ戻る</a>
+	   		<p class="ptag"></p>
+
+	   		<a href="UserStatus.jsp">２，登録ユーザー：結果を登録せずにユーザー画面へ戻る</a>
+	   		<p></p>
+			<a href="Top.jsp">３，未登録ユーザー：トップ画面へ戻る</a>
 	   
 	 </footer>
 	</div>

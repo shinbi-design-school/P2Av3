@@ -99,4 +99,26 @@
   	<servlet-name>RegistrationOfResultsServlet</servlet-name>
   	<url-pattern>/RegistrationOfResultsServlet</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>InqueryFromServlet</servlet-name>
+  	<display-name>InqueryFromServlet</display-name>
+  	<description></description>
+  	<servlet-class>quizSystem.servlet.InqueryFromServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>InqueryFromServlet</servlet-name>
+  	<url-pattern>/InqueryFromServlet</url-pattern>
+  </servlet-mapping>
+
+	   <servlet>
+  	<servlet-name>ReplyUserShowServlet</servlet-name>
+  	<display-name>ReplyUserShowServlet</display-name>
+  	<description></description>
+  	<servlet-class>quizSystem.servlet.ReplyUserShowServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ReplyUserShowServlet</servlet-name>
+  	<url-pattern>/ReplyUserShowServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

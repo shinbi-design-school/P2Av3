@@ -55,6 +55,7 @@ public class NewMemberAddServlet extends HttpServlet {
 		//ブラウザから値が取れているか確認
 		String inputAccountname = request.getParameter("accountname");
 		String inputPassword = request.getParameter("password");
+		
 System.out.println("ブラウザ入力の確認");
 System.out.println(inputAccountname);
 System.out.println(inputPassword);
@@ -154,7 +155,12 @@ System.out.println(inputAccountname);
 System.out.println();
 			NewMemberAddDAO userAddDAO = new NewMemberAddDAO();//DBアクセスのオブジェクトをインスタンス
 			NewMemberAddDTO addUser = userAddDAO.addUserInfromationToDatabase(inputAccountname,inputPasswordByteString);//
-	
+
+System.out.println("addUserに情報が入っているか確認");
+System.out.println(addUser.getId());
+System.out.println(addUser.getAccountname());
+System.out.println(addUser.getPasswordByteString());
+
 			HttpSession session = request.getSession();//
 			session.setAttribute("addUser",addUser);//
 			

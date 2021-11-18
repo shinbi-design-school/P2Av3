@@ -50,8 +50,11 @@ public class NewMemberAddDAO {
 			//(3)sqlの実行結果の処理
 			while(rsUser.next()) {
 				int id =rsUser.getInt("id");
+				addUser.setId(id);
 				String accountname = rsUser.getString("accountname");
+				addUser.setAccountname(accountname);
 				String passwordByteString = rsUser.getString("passwordByteString");
+				addUser.setPasswordByteString(passwordByteString);
 			}
 			//(4)終了
 			//また、insert, update, deleteのような、データベースの更新を行う処理には、executeUpdateメソッドを使います。更新された行数が返されます。
