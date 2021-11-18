@@ -4,41 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<display-name>LoginServlet</display-name>
-  	<description></description>
-  	<servlet-class>cc.shinbi.P2Av3.servlet.LoginServlet</servlet-class>
-  </servlet>
-  <servlet>
-  <servlet-name>LogoutServlet</servlet-name>
-  	<display-name>LogoutServlet</display-name>
-  	<description></description>
-  	<servlet-class>cc.shinbi.P2Av3.servlet.LogoutServlet</servlet-class>
-  	</servlet>
-  	<servlet>
-  	<servlet-name>AccountRegisterServlet</servlet-name>
-  	<display-name>AccountRegisterServlet</display-name>
-  	<description></description>
-  	<servlet-class>cc.shinbi.P2Av3.servlet.AccountRegisterServlet</servlet-class>
-  	</servlet>
-  	<servlet>
-  	<servlet-name>AccountcheckServlet</servlet-name>
-  	<display-name>AccountcheckServlet</display-name>
-  	<description></description>
-  	<servlet-class>cc.shinbi.P2Av3.servlet.AccountcheckServlet</servlet-class>
-  	</servlet>
-  	<servlet>
-  	<servlet-name>AccountcheckServlet</servlet-name>
-  	<display-name>AccountcheckServlet</display-name>
-  	<description></description>
-  	<servlet-class>cc.shinbi.P2Av3.servlet.AccountcheckServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>LogoutServlet</servlet-name>
-  	<url-pattern>LogoutServlet</url-pattern>
-  </servlet-mapping>
-
+ 
   <servlet-mapping>
   	<servlet-name>AccountSearchServlet</servlet-name>
   	<url-pattern>AccountSearchServlet</url-pattern>
