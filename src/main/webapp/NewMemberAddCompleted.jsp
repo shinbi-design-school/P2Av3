@@ -32,7 +32,7 @@ String inputPassword = (String)session.getAttribute("inputPassword");
 					</tr>
 					
 					<tr>
-						<td><a  href="SelectQuiz.jsp">クイズの選択へ進む</a></td>
+						<td><a  href="Top.jsp">トップへ戻る</a></td>
 					</tr>
 				</table>
 	</main>
